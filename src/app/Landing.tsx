@@ -1,17 +1,17 @@
 // src/pages/landing.tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 const LandingPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    medicalCondition: '',
-    age: '',
-    height: '',
-    weight: '',
+    name: "",
+    medicalCondition: "",
+    age: "",
+    height: "",
+    weight: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,10 +27,10 @@ const LandingPage = () => {
 
     // Submit these details to your API endpoint
     try {
-      const response = await fetch('/api/user/preferences', {
-        method: 'POST',
+      const response = await fetch("/api/user/preferences", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -40,10 +40,10 @@ const LandingPage = () => {
       }
 
       const result = await response.json();
-      setMessage(result.message || 'Preferences saved successfully!');
+      setMessage(result.message || "Preferences saved successfully!");
     } catch (error) {
       console.error("Failed to save user's preferences", error);
-      setMessage('Failed to save preferences. Please try again.');
+      setMessage("Failed to save preferences. Please try again.");
     }
 
     setIsSubmitting(false);
@@ -51,7 +51,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      <h1>Welcome! Let's get to know you.</h1>
+      <h1>Welcome! Let&apos;s get to know you.</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -93,7 +93,7 @@ const LandingPage = () => {
           required
         />
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
       {message && <p>{message}</p>}
