@@ -16,7 +16,12 @@
     "react": "^18",
     "react-calendar": "^4.8.0",
     "react-dom": "^18",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "@types/gapi": "^0.0.47",
+    "@types/google.accounts": "^0.0.14",
+    "next": "14.1.4",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

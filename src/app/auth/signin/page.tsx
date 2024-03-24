@@ -53,7 +53,7 @@ export default function SignIn() {
       <h1 className="text-4xl text-center">
         Welcome to <span className={latoBold.className}>Injurney</span>.
       </h1>
-      <h3 className={`${latoNormal.className} text-center mt-4`}>
+      <h3 className="mt-4 text-center">
         Revolutionizing your track to recovery.
       </h3>
       <form
