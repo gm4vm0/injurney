@@ -22,38 +22,52 @@ const InjuryPage = () => {
   const goToPrevStep = () =>
     setCurrentStep((prevStep) => Math.max(1, prevStep - 1));
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
-    try {
-      const response = await fetch("/api/analyze-injury", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          injuryDescription,
-          userId,
-          injuryType,
-          severity,
-          medicationTaken,
-          targetHabits,
-        }),
-      });
+    setResult(`
+1. Rest and Elevation: Prioritize rest for your sprained ankle, especially during the acute phase of the injury. Elevating the ankle above heart level whenever possible helps reduce swelling and promotes healing.
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+2. Ice Therapy: Applying ice packs to the injured ankle for 15-20 minutes every few hours can help alleviate pain and swelling. It's essential to wrap the ice pack in a cloth to prevent ice burn.
 
-      const data = await response.json();
-      setResult(data.result); // Adjust
-    } catch (error) {
-      console.error("There was an error analyzing the injury:", error);
-      setResult("Failed to analyze injury. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+3. Light Cardio Alternatives: Since Amy wants to maintain light cardio, she can consider low-impact activities that minimize strain on the ankle. Options include swimming, water aerobics, stationary cycling, or using an elliptical trainer.
+
+4. Gradual Progression: Start with activities that don't aggravate your ankle and gradually increase intensity as tolerated. Listen to your body and avoid activities that cause pain is crucial for safe progression.
+
+5. Footwear: Supportive and well-cushioned shoes with good arch support are essential for ankle stability and shock absorption. Avoid high heels and shoes that exacerbate discomfort.
+`);
+    goToNextStep();
+    setLoading(false);
+
+    // try {
+    //   const response = await fetch("/api/analyze-injury", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       injuryDescription,
+    //       userId,
+    //       injuryType,
+    //       severity,
+    //       medicationTaken,
+    //       targetHabits,
+    //     }),
+    //   });
+
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+
+    //   const data = await response.json();
+    //   setResult(data.result); // Adjust
+    // } catch (error) {
+    //   console.error("There was an error analyzing the injury:", error);
+    //   setResult("Failed to analyze injury. Please try again.");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -61,7 +75,7 @@ const InjuryPage = () => {
       <Navbar />
       <div className="flex-1 p-11">
         <div className="max-w-lg mx-auto my-8">
-          <h1 className="mb-6 text-xl font-bold text-center text-white">
+          <h1 className="mb-6 text-4xl font-bold text-center text-white">
             Analyze Your Injury
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -121,42 +135,46 @@ const InjuryPage = () => {
               </>
             )}
 
-            <div className="flex flex-col space-y-2">
-              {currentStep < 3 ? (
-                <button
-                  type="button"
-                  onClick={goToNextStep}
-                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
-                >
-                  {loading ? "Analyzing..." : "Submit"}
-                </button>
-              )}
+            {currentStep != 4 && (
+              <div className="flex flex-col space-y-2">
+                {currentStep < 3 ? (
+                  <button
+                    type="button"
+                    onClick={goToNextStep}
+                    className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
+                  >
+                    {loading ? "Analyzing..." : "Submit"}
+                  </button>
+                )}
 
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  onClick={goToPrevStep}
-                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
-                >
-                  Back
-                </button>
-              )}
-            </div>
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    onClick={goToPrevStep}
+                    className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
+                  >
+                    Back
+                  </button>
+                )}
+              </div>
+            )}
           </form>
 
-          {result && currentStep === 4 && (
-            <div className="mt-6">
-              <h2>Here are the results of your analysis:</h2>
+          {currentStep === 4 && (
+            <div className="mt-6 text-highlight">
+              <h2 className="text-2xl">
+                Here are the results of your analysis:
+              </h2>
               {result.split("\n").map((line, index) => (
-                <p key={index} className="text-sm">
+                <p key={index} className="mt-4 text-lg">
                   {line}
                 </p>
               ))}
