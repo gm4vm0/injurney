@@ -60,7 +60,7 @@ export default function SignIn() {
 
       <div className="mt-4">
         <Image
-          src="/public/injurney.png"
+          src="/injurney.png"
           alt="Injurney Logo"
           width={150}
           height={150}
