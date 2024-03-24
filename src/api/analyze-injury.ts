@@ -32,6 +32,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             max_tokens: 512,
         });
 
+        const rawText = completionResponse.choices[0].text.trim();
+
+        const suggestions = rawText.split('\n').filter(line => line.trim() !== '');
+
         return res.status(200).json({ result: completionResponse.choices[0].text.trim() });
     } catch (error) {
         console.error('Error calling OpenAI API:', error);

@@ -49,10 +49,12 @@ const InjuryPage = () => {
       </form>
       {result && (
         <div>
-          <h2>Analysis Result:</h2>
-          <p>{result}</p>
+        <h2>Analysis Result:</h2>
+        {result.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+        ))}
         </div>
-      )}
+    )}
     </div>
   );
 };
