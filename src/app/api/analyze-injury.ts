@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../utils/mongodb'
+import clientPromise from '../../utils/mongodb'
 import { OpenAI } from 'openai';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

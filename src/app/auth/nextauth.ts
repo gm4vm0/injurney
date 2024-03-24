@@ -15,16 +15,13 @@ export default NextAuth({
         clientSecret: process.env.GITHUB_SECRET as string,
       }),
   ],
-  // Add custom pages for sign in, sign out, error, verify request, etc if needed
   pages: {
     signIn: '/auth/signin',
   },
   // Define database options here if you want to keep sessions in the database
-  // database: process.env.DATABASE_URL,
   
   session: {
-    // Use JSON Web Tokens for session instead of database sessions.
-    // This is default
+
     strategy: "jwt",
   },
 

@@ -1,6 +1,7 @@
 "use client";
 
 import "./calendar.css";
+import Navbar from "../components/Navbar";
 
 import { Lato } from "next/font/google";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,8 @@ export default function Home() {
 
   return (
     <div>
+      <Navbar />
+    <div>
       {user && (
         <div className="flex flex-col items-start justify-center text-highlight p-11">
           <div className={`${latoBold.className} h-32`}>
@@ -34,6 +37,7 @@ export default function Home() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

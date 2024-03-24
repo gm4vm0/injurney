@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../../utils/mongodb';
+import clientPromise from '../../../utils/mongodb';
 
 interface UserPreferenceRequestBody {
     name: string;
