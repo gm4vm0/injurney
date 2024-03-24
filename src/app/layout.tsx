@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { UserContext } from "@/context/UserContext";
+import ContextWrapper from "./ContextWrapper";
 
 export const metadata = {
   title: "Next.js",
@@ -11,13 +10,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState(null);
-
   return (
     <html lang="en">
-      <UserContext.Provider value={{ user, setUser }}>
-        <body>{children}</body>
-      </UserContext.Provider>
+      <ContextWrapper>{children}</ContextWrapper>
     </html>
   );
 }
