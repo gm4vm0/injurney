@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import Navbar from '../../components/Navbar';
+import Navbar from "../../components/Navbar";
 
 interface UserProfile {
   name: string;
@@ -37,8 +39,8 @@ const ProfilePage = () => {
     <div className="flex flex-col md:flex-row">
       <Navbar />
       <div className="flex-1">
-        <div className="max-w-4xl mx-auto p-5 bg-white shadow-lg rounded-lg">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        <div className="max-w-4xl p-5 mx-auto bg-white rounded-lg shadow-lg">
+          <h1 className="mb-4 text-2xl font-bold text-gray-800">
             User Profile
           </h1>
           <div className="space-y-2">
