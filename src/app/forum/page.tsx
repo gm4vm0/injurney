@@ -23,7 +23,7 @@ export const Forum = () => {
   }>({});
 
   const fetchPosts = async () => {
-    const response = await fetch("../api/forum/forum");
+    const response = await fetch("/api/forum");
     if (response.ok) {
       const data = await response.json();
       setPosts(data);
