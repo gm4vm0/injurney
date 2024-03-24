@@ -168,7 +168,7 @@ const InjuryPage = () => {
             )}
           </form>
 
-          {currentStep === 4 && (
+          {currentStep == 4 && (
             <div className="mt-6 text-highlight">
               <h2 className="text-2xl">
                 Here are the results of your analysis:
