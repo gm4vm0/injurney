@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,10 @@ const Navbar = () => {
   return (
     <>
       {/* Mobile Menu */}
-      <button className="md:hidden p-4" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="text-lg ml-11 mt-11 md:hidden text-highlight"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         Menu
       </button>
 
@@ -17,7 +20,7 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden`}
       >
-        <ul className="space-y-4 p-8">
+        <ul className="p-8 space-y-4">
           <li>
             <Link
               href="/"
@@ -78,9 +81,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex justify-between items-center p-4 bg-gray-800 text-white">
-      <div className="flex items-center">
-        <Image src="/injurney.png" alt="Injurney Logo" width={40} height={40} />
+      <div className="items-center justify-between hidden p-4 text-white bg-gray-800 md:flex">
         <div>Injurney</div>
         <ul className="flex space-x-6">
           <li>
@@ -140,7 +141,6 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-      </div>
       </div>
     </>
   );
