@@ -1,15 +1,19 @@
 "use client";
 
+import { redirect, useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
 
 export default function SignIn() {
-  const { user, setUser } = useContext(UserContext);
+  const router = useRouter();
+
+  const { setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,7 +36,10 @@ export default function SignIn() {
         height: 162,
         weight: 58,
       });
+      router.replace("/");
     }
+    setIsSubmitting(false);
+    setMessage("Wrong credentials");
   };
 
   return (
@@ -55,6 +62,7 @@ export default function SignIn() {
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Submitting..." : "Submit"}
       </button>
+      {message != "" && message}
     </form>
   );
 }
