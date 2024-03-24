@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { UserContext } from "@/context/UserContext";
 
 export const metadata = {
@@ -10,9 +11,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [user, setUser] = useState(null);
+
   return (
     <html lang="en">
-      <UserContext.Provider value={null}>
+      <UserContext.Provider value={{ user, setUser }}>
         <body>{children}</body>
       </UserContext.Provider>
     </html>
