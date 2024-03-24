@@ -1,6 +1,9 @@
 "use client";
 
+import { Lato } from "next/font/google";
 import { useEffect, useState } from "react";
+
+const latoNormal = Lato({ subsets: ["latin"], weight: "400" });
 
 interface Post {
   _id: string;
@@ -48,7 +51,7 @@ export const Forum = () => {
     const commentContent = commentInputs[postId];
     if (!commentContent) return;
 
-    const response = await fetch(`../api/forum/${postId}/comment`, {
+    const response = await fetch(`/api/forum/${postId}/comment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -66,7 +69,7 @@ export const Forum = () => {
   };
 
   const handleUpvotes = async (postId: string) => {
-    const response = await fetch(`../api/forum/${postId}/upvote`, {
+    const response = await fetch(`/api/forum/${postId}/upvote`, {
       method: "POST",
     });
 
@@ -78,15 +81,32 @@ export const Forum = () => {
   };
 
   return (
-    <div className="flex-1 p-4">
-      <h1 className="mb-4 text-2xl font-bold">Recovery Journey Forum</h1>
+    <div
+      className={`${latoNormal.className} text-highlight flex flex-col items-start p-16 gap-10`}
+    >
+      <h1 className="text-4xl font-bold">Recovery Journey Forum</h1>
+      <div className="w-full p-6 bg-highlight text-darkgreen rounded-3xl">
+        <h3 className="w-full text-2xl font-bold">Write a post.</h3>
+        <form>
+          <input
+            type="text"
+            placeholder="Start typing here."
+            className="w-full mt-2 bg-transparent text-neutral-700 placeholder:text-xl focus:outline-none"
+          ></input>
+          <input
+            type="submit"
+            value="Post"
+            className="w-full p-2 mt-2 text-lg rounded-lg bg-darkgreen text-highlight"
+          ></input>
+        </form>
+      </div>
       {posts.length === 0 ? (
-        <div className="p-10 text-center text-gray-500">No posts yet.</div>
+        <div className="text-center text-gray-500">No posts yet.</div>
       ) : (
         posts.map((post) => (
           <div
             key={post._id}
-            className="p-4 mb-4 space-y-2 bg-white rounded-lg shadow"
+            className="py-4 mb-4 space-y-2 bg-white rounded-lg shadow"
           >
             <div className="font-bold">{post.user}</div>
             <p>{post.content}</p>
