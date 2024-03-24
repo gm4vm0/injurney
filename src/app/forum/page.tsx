@@ -80,6 +80,21 @@ export const Forum = () => {
     }
   };
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    setPosts([
+      ...posts,
+      {
+        _id: "abc",
+        user: "You",
+        content: event.target.content.value,
+        votes: 0,
+        comments: [],
+      },
+    ]);
+    console.log(posts);
+  };
+
   return (
     <div
       className={`${latoNormal.className} text-highlight flex flex-col items-start p-16 gap-10`}
@@ -91,11 +106,13 @@ export const Forum = () => {
           <input
             type="text"
             placeholder="Start typing here."
+            name="content"
             className="w-full mt-2 bg-transparent text-neutral-700 placeholder:text-xl focus:outline-none"
           ></input>
           <input
             type="submit"
             value="Post"
+            onSubmit={handleSubmit}
             className="w-full p-2 mt-2 text-lg rounded-lg bg-darkgreen text-highlight"
           ></input>
         </form>
