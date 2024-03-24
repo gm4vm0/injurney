@@ -1,5 +1,6 @@
 "use client";
-import { useState, FormEvent } from "react";
+
+import { FormEvent, useState } from "react";
 import Navbar from "../../components/Navbar";
 
 const InjuryPage = () => {
@@ -58,15 +59,15 @@ const InjuryPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex-1">
+      <div className="flex-1 p-11">
         <div className="max-w-lg mx-auto my-8">
-          <h1 className="text-xl font-bold text-center mb-6 text-white">
+          <h1 className="mb-6 text-xl font-bold text-center text-white">
             Analyze Your Injury
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             {currentStep === 1 && (
               <textarea
-                className="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                className="w-full p-4 transition-colors border-2 border-gray-300 rounded-lg focus:border-highlight focus:outline-none"
                 value={injuryDescription}
                 onChange={(e) => setInjuryDescription(e.target.value)}
                 placeholder="Describe your injury..."
@@ -77,7 +78,7 @@ const InjuryPage = () => {
             {currentStep === 2 && (
               <>
                 <select
-                  className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                  className="w-full p-4 transition-colors border-2 border-gray-300 rounded-lg focus:border-highlight focus:outline-none"
                   value={injuryType}
                   onChange={(e) => setInjuryType(e.target.value)}
                   required
@@ -89,7 +90,7 @@ const InjuryPage = () => {
                 </select>
 
                 <select
-                  className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                  className="w-full p-4 transition-colors border-2 border-gray-300 rounded-lg focus:border-highlight focus:outline-none"
                   value={severity}
                   onChange={(e) => setSeverity(e.target.value)}
                   required
@@ -104,14 +105,14 @@ const InjuryPage = () => {
             {currentStep === 3 && (
               <>
                 <input
-                  className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                  className="w-full p-4 transition-colors border-2 border-gray-300 rounded-lg focus:border-highlight focus:outline-none"
                   type="text"
                   value={medicationTaken}
                   onChange={(e) => setMedicationTaken(e.target.value)}
                   placeholder="Medication Taken"
                 />
                 <input
-                  className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                  className="w-full p-4 transition-colors border-2 border-gray-300 rounded-lg focus:border-highlight focus:outline-none"
                   type="text"
                   value={targetHabits}
                   onChange={(e) => setTargetHabits(e.target.value)}
@@ -125,7 +126,7 @@ const InjuryPage = () => {
                 <button
                   type="button"
                   onClick={goToNextStep}
-                  className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
                 >
                   Next
                 </button>
@@ -133,7 +134,7 @@ const InjuryPage = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
                 >
                   {loading ? "Analyzing..." : "Submit"}
                 </button>
@@ -143,7 +144,7 @@ const InjuryPage = () => {
                 <button
                   type="button"
                   onClick={goToPrevStep}
-                  className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  className="w-full py-2 mt-4 transition-colors rounded-lg text-darkgreen bg-highlight"
                 >
                   Back
                 </button>
