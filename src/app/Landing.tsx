@@ -1,5 +1,5 @@
-// src/pages/landing.tsx
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 const LandingPage = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +12,19 @@ const LandingPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    // Checks if a user ID already exists in localStorage, otherwise generate a new one
+    const existingUserId = localStorage.getItem("userId");
+    if (!existingUserId) {
+      const newUserId = uuidv4();
+      localStorage.setItem("userId", newUserId);
+      setUserId(newUserId);
+    } else {
+      setUserId(existingUserId);
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,14 +38,15 @@ const LandingPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Submit these details to your API endpoint
+    const dataToSubmit = { ...formData, userId };
+
     try {
       const response = await fetch("/api/user/preferences", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSubmit),
       });
 
       if (!response.ok) {

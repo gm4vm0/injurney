@@ -19,7 +19,7 @@ export default async function handler(
     
           const { name, medicalCondition, age, height, weight } = req.body as UserPreferenceRequestBody;
     
-          // Insert the user preferences into the database
+          // Insert the user preferences
           const result = await db.collection("userPreferences").insertOne({
             name, 
             medicalCondition, 

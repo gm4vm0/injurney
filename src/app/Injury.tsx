@@ -1,32 +1,33 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent } from "react";
 
 const InjuryPage = () => {
-  const [injuryDescription, setInjuryDescription] = useState('');
+  const [injuryDescription, setInjuryDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState("");
+  const [userId, setUserId] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
     try {
-      const response = await fetch('/api/analyze-injury', {
-        method: 'POST',
+      const response = await fetch("/api/analyze-injury", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ injuryDescription }),
+        body: JSON.stringify({ injuryDescription, userId }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const data = await response.json();
-      setResult(data.result); // Adjust 
+      setResult(data.result); // Adjust
     } catch (error) {
-      console.error('There was an error analyzing the injury:', error);
-      setResult('Failed to analyze injury. Please try again.');
+      console.error("There was an error analyzing the injury:", error);
+      setResult("Failed to analyze injury. Please try again.");
     }
 
     setLoading(false);
@@ -43,10 +44,15 @@ const InjuryPage = () => {
           required
         ></textarea>
         <button type="submit" disabled={loading}>
-          {loading ? 'Analyzing...' : 'Submit'}
+          {loading ? "Analyzing..." : "Submit"}
         </button>
       </form>
-      {result && <div><h2>Analysis Result:</h2><p>{result}</p></div>}
+      {result && (
+        <div>
+          <h2>Analysis Result:</h2>
+          <p>{result}</p>
+        </div>
+      )}
     </div>
   );
 };
