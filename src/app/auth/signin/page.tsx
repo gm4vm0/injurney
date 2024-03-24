@@ -4,6 +4,7 @@ import { Lato } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
+import Image from 'next/image';
 
 const latoNormal = Lato({ subsets: ["latin"], weight: "400" });
 const latoBold = Lato({ subsets: ["latin"], weight: "700" });
@@ -56,6 +57,11 @@ export default function SignIn() {
       <h3 className="mt-4 text-center">
         Revolutionizing your track to recovery.
       </h3>
+
+      <div className="mt-4">
+        <Image src="../../../../public/injurney.png" alt="Injurney Logo" width={150} height={150} /> 
+      </div>
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center gap-2.5 mt-4"
