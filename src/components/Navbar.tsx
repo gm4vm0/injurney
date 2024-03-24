@@ -81,7 +81,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Menu */}
-      <div className="items-center justify-between hidden p-4 text-white bg-gray-800 md:flex">
+      <div className="items-center justify-between hidden p-4 text-white bg-darkgreen md:flex">
         <div>Injurney</div>
         <ul className="flex space-x-6">
           <li>
