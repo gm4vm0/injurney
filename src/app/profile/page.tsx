@@ -57,9 +57,9 @@ const ProfilePage = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-10 flex-1">
-        <div className="max-w-4xl mx-auto p-5 bg-white shadow-lg rounded-lg">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
+      <div className="flex-1 mt-10 mx-11">
+        <div className="max-w-4xl p-5 mx-auto bg-white rounded-lg shadow-lg">
+          <h1 className="mb-4 text-2xl font-bold text-gray-800">
             User Profile
           </h1>
           <div className="space-y-2">
