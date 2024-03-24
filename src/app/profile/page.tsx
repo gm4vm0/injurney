@@ -1,7 +1,10 @@
 "use client";
 
+import { Lato } from "next/font/google";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
+
+const latoNormal = Lato({ subsets: ["latin"], weight: "400" });
 
 interface UserProfile {
   name: string;
@@ -41,7 +44,13 @@ const ProfilePage = () => {
   }, []);
 
   if (!profile) {
-    return <div>Loading profile...</div>;
+    return (
+      <h1
+        className={`${latoNormal.className} text-2xl text-highlight flex flex-col items-center justify-center h-screen p-16`}
+      >
+        Loading profile...
+      </h1>
+    );
   }
   */
 
