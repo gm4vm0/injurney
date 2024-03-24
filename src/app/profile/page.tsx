@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import Navbar from '../../components/Navbar';
+import Navbar from "../../components/Navbar";
 
 interface UserProfile {
   name: string;
@@ -10,11 +12,20 @@ interface UserProfile {
 }
 
 const ProfilePage = () => {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  //const [profile, setProfile] = useState<UserProfile | null>(null);
+
+  const [profile, setProfile] = useState<UserProfile>({
+    name: "Amy Lee",
+    medicalCondition: "Sprained ankle",
+    age: 61,
+    height: 165,
+    weight: 58,
+  });
+
+  /* Comment useEffect hook since we're hardcoding user profile
 
   useEffect(() => {
-    // Replace 'user@example.com' with the actual logged-in user's email
-    const userEmail = "user@example.com";
+    const userEmail = "test@email.com";
 
     const fetchData = async () => {
       const res = await fetch(`/api/user/${encodeURIComponent(userEmail)}`);
@@ -32,11 +43,12 @@ const ProfilePage = () => {
   if (!profile) {
     return <div>Loading profile...</div>;
   }
+  */
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div>
       <Navbar />
-      <div className="flex-1">
+      <div className="mt-10 flex-1">
         <div className="max-w-4xl mx-auto p-5 bg-white shadow-lg rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
             User Profile

@@ -26,7 +26,7 @@ const InjuryPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("api/analyze-injury", {
+      const response = await fetch("/api/analyze-injury", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const InjuryPage = () => {
 
           {result && currentStep === 4 && (
             <div className="mt-6">
-              <h2>Analysis Result:</h2>
+              <h2>Here are the results of your analysis:</h2>
               {result.split("\n").map((line, index) => (
                 <p key={index} className="text-sm">
                   {line}
