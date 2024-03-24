@@ -1,8 +1,12 @@
 "use client";
 
-import { redirect, useRouter } from "next/navigation";
+import { Lato } from "next/font/google";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
+
+const latoNormal = Lato({ subsets: ["latin"], weight: "400" });
+const latoBold = Lato({ subsets: ["latin"], weight: "700" });
 
 export default function SignIn() {
   const router = useRouter();
@@ -43,26 +47,49 @@ export default function SignIn() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="text"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="Password"
-      />
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Submitting..." : "Submit"}
-      </button>
-      {message != "" && message}
-    </form>
+    <main
+      className={`${latoNormal.className} text-highlight flex flex-col items-center justify-center h-screen p-16`}
+    >
+      <h1 className="text-4xl text-center">
+        Welcome to <span className={latoBold.className}>Injurney</span>.
+      </h1>
+      <h3 className={`${latoNormal.className} text-center mt-4`}>
+        Revolutionizing your track to recovery.
+      </h3>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-center gap-2.5 mt-4"
+      >
+        <input
+          type="text"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+          required
+          className="px-2 py-1 bg-transparent border-2 rounded-lg w-52 border-highlight placeholder-highlight focus:outline-none"
+        />
+        <input
+          type="text"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+          className="px-2 py-1 bg-transparent border-2 rounded-lg w-52 border-highlight placeholder-highlight focus:outline-none"
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="py-1 bg-transparent border-2 rounded-lg w-52 border-highlight placeholder-highlight focus:outline-none"
+        >
+          {isSubmitting ? "Logging In..." : "Log In"}
+        </button>
+        {message != "" && message}
+      </form>
+      <p className="mt-4">
+        First time? <span className="underline">Create an account</span>
+      </p>
+      <p className="underline">Forgot Password</p>
+    </main>
   );
 }

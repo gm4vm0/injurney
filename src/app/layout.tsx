@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import ContextWrapper from "./ContextWrapper";
 
 export const metadata = {
@@ -11,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-darkgreen">
       <ContextWrapper>{children}</ContextWrapper>
     </html>
   );
