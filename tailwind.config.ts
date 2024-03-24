@@ -9,12 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#082021",
+        darkgreen: "#082021",
         font: "#E0E2DB",
-        highlight: "#5932EA",
+        highlight: "#D5D4DF",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
