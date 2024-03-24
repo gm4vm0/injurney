@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import Navbar from "../components/Navbar";
 
 const InjuryPage = () => {
   const [injuryDescription, setInjuryDescription] = useState("");
@@ -54,96 +55,109 @@ const InjuryPage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto my-8">
-      <h1 className = "text-xl font-bold text-center mb-6">Analyze Your Injury</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {currentStep === 1 && (
-          <textarea
-            className="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
-            value={injuryDescription}
-            onChange={(e) => setInjuryDescription(e.target.value)}
-            placeholder="Describe your injury..."
-            required
-          ></textarea>
-        )}
-
-        {currentStep === 2 && (
-          <>
-            <select
-              className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
-              value={injuryType}
-              onChange={(e) => setInjuryType(e.target.value)}
+    <div className="flex flex-col md:flex-row">
+      <Navbar />
+      <div className="flex-1">
+      <div className="max-w-lg mx-auto my-8">
+        <h1 className="text-xl font-bold text-center mb-6">
+          Analyze Your Injury
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {currentStep === 1 && (
+            <textarea
+              className="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+              value={injuryDescription}
+              onChange={(e) => setInjuryDescription(e.target.value)}
+              placeholder="Describe your injury..."
               required
-            >
-              <option value="">Select Injury Type</option>
-              <option value="Strained Muscles">Strained Muscles</option>
-              <option value="Broken Arm/Leg">Broken Arm/Leg</option>
-              <option value="Sprained Ankle">Sprained Ankle</option>
-            </select>
+            ></textarea>
+          )}
 
-            <select
-              className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
-              value={severity}
-              onChange={(e) => setSeverity(e.target.value)}
-              required
-            >
-              <option value="">Injury Severity</option>
-              <option value="Severe">Severe</option>
-              <option value="Mild">Mild</option>
-            </select>
-          </>
-        )}
+          {currentStep === 2 && (
+            <>
+              <select
+                className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                value={injuryType}
+                onChange={(e) => setInjuryType(e.target.value)}
+                required
+              >
+                <option value="">Select Injury Type</option>
+                <option value="Strained Muscles">Strained Muscles</option>
+                <option value="Broken Arm/Leg">Broken Arm/Leg</option>
+                <option value="Sprained Ankle">Sprained Ankle</option>
+              </select>
 
-        {currentStep === 3 && (
-          <>
-            <input
-              className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
-              type="text"
-              value={medicationTaken}
-              onChange={(e) => setMedicationTaken(e.target.value)}
-              placeholder="Medication Taken"
-            />
-            <input
-              className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
-              type="text"
-              value={targetHabits}
-              onChange={(e) => setTargetHabits(e.target.value)}
-              placeholder="Target Habits"
-            />
-          </>
-        )}
-    
-    <div className="flex flex-col space-y-2">
-        {currentStep < 3 ? (
-          <button type="button" 
-          onClick={goToNextStep}
-          className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Next
-          </button>
-        ) : (
-          <button type="submit" disabled={loading}>
-            {loading ? "Analyzing..." : "Submit"}
-          </button>
-        )}
+              <select
+                className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                value={severity}
+                onChange={(e) => setSeverity(e.target.value)}
+                required
+              >
+                <option value="">Injury Severity</option>
+                <option value="Severe">Severe</option>
+                <option value="Mild">Mild</option>
+              </select>
+            </>
+          )}
 
-        {currentStep > 1 && (
-          <button type="button" 
-          onClick={goToPrevStep}
-          className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Back
-          </button>
-        )}
-        </div>
-      </form>
+          {currentStep === 3 && (
+            <>
+              <input
+                className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                type="text"
+                value={medicationTaken}
+                onChange={(e) => setMedicationTaken(e.target.value)}
+                placeholder="Medication Taken"
+              />
+              <input
+                className="w-full p-4 mt-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 transition-colors"
+                type="text"
+                value={targetHabits}
+                onChange={(e) => setTargetHabits(e.target.value)}
+                placeholder="Target Habits"
+              />
+            </>
+          )}
 
-      {result && currentStep === 4 && (
-        <div className="mt-6">
-          <h2>Analysis Result:</h2>
-          {result.split("\n").map((line, index) => (
-            <p key={index} className="text-sm">{line}</p>
-          ))}
-        </div>
-      )}
+          <div className="flex flex-col space-y-2">
+            {currentStep < 3 ? (
+              <button
+                type="button"
+                onClick={goToNextStep}
+                className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Next
+              </button>
+            ) : (
+              <button type="submit" disabled={loading}>
+                {loading ? "Analyzing..." : "Submit"}
+              </button>
+            )}
+
+            {currentStep > 1 && (
+              <button
+                type="button"
+                onClick={goToPrevStep}
+                className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Back
+              </button>
+            )}
+          </div>
+        </form>
+
+        {result && currentStep === 4 && (
+          <div className="mt-6">
+            <h2>Analysis Result:</h2>
+            {result.split("\n").map((line, index) => (
+              <p key={index} className="text-sm">
+                {line}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
+      </div>
     </div>
   );
 };
