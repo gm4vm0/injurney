@@ -37,7 +37,7 @@ const InjuryPage = () => {
 
 5. Footwear: Supportive and well-cushioned shoes with good arch support are essential for ankle stability and shock absorption. Avoid high heels and shoes that exacerbate discomfort.
 `);
-    goToNextStep();
+    setCurrentStep(4);
     setLoading(false);
 
     // try {
